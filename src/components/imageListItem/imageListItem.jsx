@@ -35,7 +35,15 @@ const ImageListItem = (props) => {
   };
 
   const handleRemove = (value) => {
-    // TO DO
+    const newItem = { ...item };
+    const indexTag = newItem.tags.findIndex((tag) => tag.id == value);
+    newItem.tags.splice(indexTag, 1);
+    tagImage(item.id, value, newItem)
+      .then(() => {
+        notification.success({ message: "Successfull" });
+      })
+      .catch((e) => notification.error({ message: e }));
+    setItem(newItem);
   };
   return (
     <List.Item key={item.id}>
