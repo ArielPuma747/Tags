@@ -6,4 +6,10 @@ const getTags = async () => {
   const response = await ApiService.get(URL_TAG);
   return response.data;
 };
-export {getTags};
+
+const tagImage = async (id, tagId, data) => {
+    const response = await ApiService.patch(`/mural/${id}/tag/${tagId}`, data);
+    return response.data;
+};
+
+export { getTags, tagImage};
