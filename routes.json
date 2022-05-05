@@ -1,0 +1,3 @@
+{
+    "/mural/:id/tag/:tagId": "/image/:id"
+}
