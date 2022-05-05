@@ -1,7 +1,8 @@
-import { List, Card, Image, Tag, Button } from "antd";
+import { List, Card, Image, Tag, Button, notification } from "antd";
 import { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import SelectTag from "../selectTag/selectTag";
+import { tagImage } from "../../services/tag";
 
 const ImageListItem = (props) => {
   const { item: itemData } = props;
@@ -14,7 +15,23 @@ const ImageListItem = (props) => {
   };
 
   const handleAdd = () => {
-    // TO DO
+    const { id, value } = selectTag;
+    const indexTag = item.tags.findIndex((tag) => tag.id == id);
+
+    if (indexTag < 0) {
+      const newItem = { ...item };
+      newItem.tags.push({ id, label: value });
+      setItem(newItem);
+      tagImage(item.id, id, newItem)
+        .then(() => {
+          notification.success({ message: "Successfull" });
+        })
+        .catch((e) => notification.error({ message: e }));
+    } else {
+      notification.error({
+        message: "This Tag is already in use",
+      });
+    }
   };
 
   const handleRemove = (value) => {
