@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Select } from "antd";
 
+import { getTags } from "../../services/tag";
 import "./styles.css";
 
 const { Option } = Select;
 
 const SelectTag = (props) => {
+  const { onChange = () => {} } = props;
   const [data, setData] = useState([]);
 
+  useEffect(() => {
+    getTags()
+      .then((response) => {
+        setData(response);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
   const onSelect = (id, target) => {
-    // TO DO
+    const { value, key } = target;
+    onChange({ id: Number(key), value });
   };
   return (
     <Select className="select-tag" placeholder="Select tag" onSelect={onSelect}>
