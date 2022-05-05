@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Select } from "antd";
 
+import "./styles.css";
+
 const { Option } = Select;
 
 const SelectTag = (props) => {
@@ -11,7 +13,7 @@ const SelectTag = (props) => {
     // TO DO
   };
   return (
-    <Select placeholder="Select tag" onSelect={onSelect}>
+    <Select className="select-tag" placeholder="Select tag" onSelect={onSelect}>
       {data.map((item) => (
         <Option key={item.id} value={item.label}>
           {item.label}
