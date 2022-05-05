@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { List } from "antd";
 
+import ImageListItem from "../imageListItem/imageListItem";
+
 const ImageList = () => {
+  const [data, setData] = useState([]);
 
   return (
     <List
@@ -13,7 +17,10 @@ const ImageList = () => {
         xl: 6,
         xxl: 3,
       }}
-      dataSource={[]}
+      dataSource={data}
+      renderItem={(item) => (
+        <ImageListItem item={item} />
+      )}
     />
   );
 };
