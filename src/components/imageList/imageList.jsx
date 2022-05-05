@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { List } from "antd";
 
+import { getImages } from "../../services/image";
 import ImageListItem from "../imageListItem/imageListItem";
 
 const ImageList = () => {
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getImages()
+      .then((response) => {
+        setData(response);
+        console.log(response);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
   return (
     <List
