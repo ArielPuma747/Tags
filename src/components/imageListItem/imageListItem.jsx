@@ -16,7 +16,7 @@ const ImageListItem = (props) => {
 
   const handleAdd = () => {
     const { id, value } = selectTag;
-    const indexTag = item.tags.findIndex((tag) => tag.id == id);
+    const indexTag = item.tags.findIndex((tag) => tag.id === id);
 
     if (indexTag < 0) {
       const newItem = { ...item };
@@ -36,7 +36,7 @@ const ImageListItem = (props) => {
 
   const handleRemove = (value) => {
     const newItem = { ...item };
-    const indexTag = newItem.tags.findIndex((tag) => tag.id == value);
+    const indexTag = newItem.tags.findIndex((tag) => tag.id === value);
     newItem.tags.splice(indexTag, 1);
     tagImage(item.id, value, newItem)
       .then(() => {
