@@ -1,10 +1,21 @@
-import { List, Card, Image, Tag } from "antd";
+import { List, Card, Image, Tag, Button } from "antd";
 import { useState } from "react";
+import { PlusOutlined } from "@ant-design/icons";
+import SelectTag from "../selectTag/selectTag";
 
 const ImageListItem = (props) => {
   const { item: itemData } = props;
 
+  const [selectTag, setSelectTag] = useState();
   const [item, setItem] = useState(itemData);
+
+  const handleChangeTag = (value) => {
+    setSelectTag(value);
+  };
+
+  const handleAdd = () => {
+    // TO DO
+  };
 
   const handleRemove = (value) => {
     // TO DO
@@ -27,6 +38,19 @@ const ImageListItem = (props) => {
             </Tag>
           ))}
         </Card>
+        <div style={{ margin: "auto", width: "300px", padding: 8 }}>
+          <SelectTag onChange={handleChangeTag} />
+          <div style={{ marginTop: 8 }}>
+            <Button
+              size="small"
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={handleAdd}
+            >
+              Add
+            </Button>
+          </div>
+        </div>
       </div>
     </List.Item>
   );
